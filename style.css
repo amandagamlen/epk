@@ -104,7 +104,8 @@ section {
 }
 
 body {
-  line-height: 1
+  line-height: 1;
+  /* background-color: black; */
 }
 
 ol,
@@ -150,33 +151,38 @@ html {
     url("https://db.onlinewebfonts.com/t/7e8601c112331686d7e3e6b525d0793b.svg#BlurWeb-Light W03 Regular")format("svg");
 }
 
-@font-face {
-  font-family: Seria;
-  font-style: normal;
-  font-weight: 400;
-  src: url(../fonts/Seria-11-imachine-Regular.woff2) format("woff2"), url(../fonts/Seria-11-imachine-Regular.woff) format("woff")
-}
 
 .text-wrap a {
-  color: var(--darkGrey);
-  display: inline-flex;
-  align-items: center;
-  gap: 1rem;
+  color: #00285c;
+  display: block;
+/* text-align: center; */
+  gap: .5rem;
   transition: all .25s ease;
-  transition-property: color
+  transition-property: color;
+
 }
 
 .text-wrap a:after {
-  content: "\2197"
+  content: "\00a0 ⇝";
+  transform: rotate(-45deg);
+  display: inline-block;
 }
 
 .text-wrap a:hover {
-  color: var(--black)
+  color: var(--black);
+
+}
+.back{
+  transform: rotate(45deg);
+  display: inline-block;
+  position: absolute;
+  left: 20px;
 }
 
 a {
   color: inherit;
-  text-decoration: none
+  text-decoration: none;
+  cursor: pointer;
 }
 
 h1,
@@ -194,11 +200,14 @@ h1 {
 }
 
 h2 {
-  font-size: 1.45em
+  font-size: 1em;
+  padding: 20px;
+  text-align: center;
 }
 
 h3 {
-  font-size: 1.3em
+  font-size: 1em;
+  text-align: center;
 }
 
 h4,
@@ -252,12 +261,12 @@ hr {
 
 ::-moz-selection {
   color: #d93c3c;
-  background: transparent
+  background: black;
 }
 
 ::selection {
   color: #d93c3c;
-  background: transparent
+  background: black;
 }
 
 html {
@@ -278,7 +287,7 @@ html.loading {
 
 #smooth-wrapper {
   transform: translateZ(0);
-  height: 100vh !important
+  height: 100vh !important;
 }
 
 body {
@@ -302,40 +311,32 @@ body {
 
 .header {
   position: fixed;
-  top: 1rem;
-  left: 1.5rem;
+top: 1rem;
   width: 100vw;
   text-align: center;
   /* background-color: red; */
   color: var(--white);
   z-index: 1000;
-  mix-blend-mode: exclusion;
-  font-size: 2rem;
-  opacity: 0;
+  /* mix-blend-mode: exclusion; */
+  font-size: 1.5rem;
+  /* opacity: 0; */
+
 }
 
+
 .logo {
-  filter: blur(2px);
-  transition: 0.3s;
+  filter: url(#threshold) blur(0px);
+  transition: filter 0.3s, font-weight 0.3s;
    font-family: "BlurWeb-Light W03 Regular";
   font-weight: 400;
   font-style: normal;
-
-
 }
 
 .logo:hover {
-  filter: blur(0px);
+   filter: url(#threshold) blur(3px);
+  font-weight: 900;
 }
 
-.menu-link {
-  font-family: "p22-cezanne-pro", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  left: 1rem;
-
-  position: fixed;
-}
 
 
 @media (max-width: 500px) {
@@ -343,60 +344,43 @@ body {
     top: .5rem
   }
 }
-.overlay {
-  height: 100%;
-  width: 0;
+#overlay {
+  height: 100vh;
+  width: 100vw;
   position: fixed;
-  z-index: 1000;
+  z-index: 1000000;
   top: 0;
   left: 0;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0,0,0, 0.9);
-  overflow-x: hidden;
-  transition: 0.5s;
+  background-color: black;
+  display: none;
+  transition: opacity 1.5s ease-out;
 }
-
-.overlay-content {
-  position: relative;
-  top: 25%;
-  width: 100%;
-  text-align: center;
-  margin-top: 30px;
-}
-
-.overlay a {
-  padding: 8px;
-  text-decoration: none;
-  /* font-size: 36px; */
-  color: var(--white);
-  display: block;
-  transition: 0.3s;
-  font-family: "MagdaWeb W03 Regular";
-  font-weight: 400;
-  font-style: normal;
-  font-size: 1rem;
-}
-
-.overlay a:hover, .overlay a:focus {
-  color: #f1f1f1;
-}
-
-.overlay .closebtn {
-  
+#box {
+  /* Center the text in the viewport. */
   position: absolute;
-  top: 20px;
-  right: 45px;
-  font-size: 30px;
+  margin: auto;
+  width: 100vw;
+  height: 80pt;
+  background-color:;
+  top: 0;
+  bottom: 0;
+  filter: url(#threshold) blur(0.6px);
 }
 
-@media screen and (max-height: 450px) {
-  .overlay a {font-size: 20px}
-  .overlay .closebtn {
-  font-size: 40px;
-  top: 15px;
-  right: 35px;
-  }
+/* Your average text styling */
+#text1, #text2 {
+  position: absolute;
+  width: 100%;
+  display: inline-block;
+  font-family: "BlurWeb-Bold W03 Regular";
+  font-weight: 400;
+  font-size: 2em;
+  font-style: normal;
+  text-align: center;
+  user-select: none;
+  color: white;
 }
+
 
 .info-title {
   z-index: 200;
@@ -418,8 +402,10 @@ body {
 .info-title .text-wrap {
   max-width: 30rem;
   margin-inline: auto;
+  text-align: center;
 
 }
+
 
 .project-titles__title {
   z-index: 500;
@@ -437,11 +423,16 @@ body {
   filter: drop-shadow(0px 0px 35px #000)
 }
 
+
 .project-images {
   display: flex;
   flex-direction: column;
   position: relative;
-  z-index: 1
+  z-index: 1;
+  background-color: black;
+
+
+ 
 }
 
 .project-images__image {
@@ -450,17 +441,25 @@ body {
   -o-object-fit: contain;
   object-fit: contain;
   -o-object-position: center;
-  object-position: center
+  object-position: center;
+  
+
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+  
+  
 }
 
 .project-images__image[data-index="0"] {
   transform: translateY(-1px);
-  margin-bottom: -100vh
+  margin-bottom: -100vh;
+  
 }
 
 .project-images__image--landscape {
   -o-object-fit: cover;
-  object-fit: cover
+  object-fit: cover;
+  
 }
 
 @media (max-width: 1000px) {
@@ -517,18 +516,21 @@ body {
 .info {
   position: relative;
   z-index: 50;
-  padding: .25rem
+  /* padding: .25rem */
 }
 
 .info__inner {
-  background-color: var(--black);
+  background: rgb(0,0,0);
+  background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 20%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.8) 80%, rgba(0,0,0,1) 100%);
   color: var(--white);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   min-height: calc(100vh - .5rem);
-  padding-top: 1rem
+  padding-top: 4rem;
+  
+   /* mix-blend-mode: overlay; */
 }
 
 .persons {
@@ -547,17 +549,6 @@ body {
   flex: 1 1 auto
 }
 
-.persons--1 .persons__person {
-  flex-basis: 100%
-}
-
-.persons--2 .persons__person {
-  flex-basis: 50%
-}
-
-.persons--3 .persons__person {
-  flex-basis: 33.333%
-}
 
 .info-text {
   display: flex;
@@ -566,12 +557,12 @@ body {
 }
 
 .index {
-  text-align: center
+  text-align: center;
 }
 
 .index__header {
   margin: 1rem;
-  margin-top: 0
+  margin-top: 2.5rem;
 }
 
 .index__list {
@@ -584,6 +575,7 @@ body {
   display: flex;
   justify-content: center;
   gap: 1rem;
+  font-size: 1.2rem;
   pointer-events: none
 }
 
@@ -606,7 +598,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  color: var(--black)
+  color: black;
 }
 
 .drawer-item__content>*:last-child {
@@ -625,11 +617,13 @@ body {
 }
 
 .drawer-item--open {
-  background-color: var(--white)
+  /* background-color: var(--white); */
+  
 }
 
 .drawer-item--open .drawer-item__header {
-  color: var(--black)
+  /* color: var(--black) */
+  padding-bottom: 1rem;
 }
 
 .drawer-item--open .drawer-item__header:after {
@@ -637,15 +631,44 @@ body {
   opacity: 1
 }
 
-.drawer-item--open .drawer-item__content {
+.drawer-item--open .drawer-item__content  {
   visibility: visible;
-  height: auto
+  height: auto;
+  background: rgb(255,255,255);
+  background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 5%, rgba(255,255,255,1) 95%, rgba(255,255,255,0) 100%);
+  padding-top: 1em;
+}
+
+.year{
+  font-family: "BlurWeb-Bold W03 Regular";
+  font-size: 0.8rem;
+}
+#border {
+border:solid 2px #41403E;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  border-bottom-right-radius: 225px 15px;
+  border-bottom-left-radius:15px 255px;
+}
+
+.scrollButton {
+filter: blur(0px); 
+transition: 0.3s;
+  cursor: pointer;
+
+
+}
+.scrollButton:hover {
+  filter: blur(2px);
+  cursor: pointer;
+  /* cursor: pointer; */
+  
 }
 
 .footer {
-  text-align: left;
+  text-align: center;
   margin-top: auto;
-  padding-top: 3rem
+  padding-top: 3rem;
 }
 
 .nav-item__content {
@@ -658,5 +681,74 @@ p {
   font-weight: 400;
   font-style: normal;
   font-size: .7rem;
-  mix-blend-mode: difference;
+  padding: 20px;
+  /* mix-blend-mode: difference; */
 }
+.macron {
+  content: "\0304";
+  margin-left: -8px;
+  color: black;
+}
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 50%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+padding: 16px;
+text-align: center;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  margin: auto;
+  overflow: hidden;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+
+}
+.column-1 {
+   margin: auto;
+  width: 50%;
+  padding: 0 10px;
+}
+
+.responsive-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  
+}
+@media screen and (max-width: 600px) {
+  .column-1 {
+    width: 95%; 
+  }
+}
+
