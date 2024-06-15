@@ -518,6 +518,22 @@ top: 1rem;
   z-index: 50;
   /* padding: .25rem */
 }
+.overlay-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  /* margin-top: 10%; */
+  position: fixed;
+  filter: contrast(80%) grayscale(100%);
+  /* filter: contrast(200%); */
+  mix-blend-mode: overlay;
+}
+@media (max-width: 650px) {
+  .overlay-img {
+    width: 100%;
+  }
+}
 
 .info__inner {
   background: rgb(0,0,0);
