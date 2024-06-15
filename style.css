@@ -318,7 +318,7 @@ body {
   color: var(--white);
   z-index: 1000;
   /* mix-blend-mode: exclusion; */
-  font-size: 1.7rem;
+   font-size: 1.6rem;
   /* opacity: 0; */
 
 }
