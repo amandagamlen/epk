@@ -325,7 +325,7 @@ top: 1rem;
 
 
 .logo {
-  filter: url(#threshold) blur(0px);
+  filter: blur(0px);
   transition: filter 0.3s, font-weight 0.3s;
    font-family: "BlurWeb-Light W03 Regular";
   font-weight: 400;
@@ -333,7 +333,7 @@ top: 1rem;
 }
 
 .logo:hover {
-   filter: url(#threshold) blur(3px);
+   filter: blur(3px);
   font-weight: 900;
 }
 
